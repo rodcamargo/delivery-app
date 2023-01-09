@@ -6,7 +6,9 @@ export default function DetailsCards(props) {
   const prefixTestId = 'customer_order_details__element-order-table-';
 
   return (
-    <section>
+    <section
+      className="p-5"
+    >
       <h2
         className="text-yellow-900 font-medium text-lg p-3 text-center"
       >
@@ -14,7 +16,7 @@ export default function DetailsCards(props) {
       </h2>
       <table className="min-w-full text-center">
         <thead className="border border-amber-200">
-          <tr className="border-b bg-amber-100 border-amber-200">
+          <tr className="border-b bg-amber-200 border-amber-200">
             <th className="text-sm font-medium text-gray-900 px-6 py-4">Item</th>
             <th className="text-sm font-medium text-gray-900 px-6 py-4">Descrição</th>
             <th className="text-sm font-medium text-gray-900 px-6 py-4">Quantidade</th>

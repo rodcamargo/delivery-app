@@ -152,7 +152,7 @@ function DetailsSeller() {
                         `seller_order_details__element-order-table-unit-price-${index}`
                       }
                     >
-                      {price}
+                      {`R$ ${(+price).toFixed(2).replace(/\./, ',')}`}
                     </td>
                     <td
                       className="text-sm text-gray-900 font-medium
@@ -161,14 +161,14 @@ function DetailsSeller() {
                         `seller_order_details__element-order-table-sub-total-${index}`
                       }
                     >
-                      {(quantity * price).toFixed(2).replace(/\./, ',')}
+                      {`R$ ${(+quantity * +price).toFixed(2).replace(/\./, ',')}`}
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
             <p
-              className="text-yellow-900 font-medium text-lg pt-3 text-right m-5"
+              className="text-yellow-900 font-medium text-xl pt-3 text-right m-5"
               data-testid="seller_order_details__element-order-total-price"
             >
               { `Total: R$ ${(+sales.totalPrice).toFixed(2).replace(/\./, ',')}` }

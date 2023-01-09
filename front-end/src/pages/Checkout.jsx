@@ -88,7 +88,7 @@ export default function Checkout() {
     <section className="h-screen  bg-amber-50">
       <Header />
       <div
-        className="flex flex-col justify-center items-center"
+        className="flex flex-col justify-center items-center p-5"
       >
         <h2
           className="text-yellow-900 font-medium text-lg pt-3 text-center"

@@ -38,7 +38,7 @@ export default function OrderDetails() {
           <DeliveryDetails sale={ details } markAsDelivered={ markAsDelivered } />
           <DetailsCards products={ details.products } />
           <div
-            className="text-yellow-900 font-medium text-lg pt-3 text-center"
+            className="text-yellow-900 font-medium text-xl pt-3 text-right m-5"
             data-testid="customer_order_details__element-order-total-price"
           >
             { `Total: R$ ${(+details.totalPrice).toFixed(2).replace(/\./, ',')}` }
