@@ -10,6 +10,10 @@ export default function TableManager(props) {
     if (role === 'administrator') return 'Admin';
   };
 
+  const isDisabled = (role) => {
+    if (role === 'administrator') return 'true';
+  };
+
   return (
     <section>
       <h2
@@ -54,19 +58,18 @@ export default function TableManager(props) {
               >
                 { handlerRole(role) }
               </td>
-              { role === 'administrator' ? null : (
-                <td>
-                  <button
-                    className="bg-yellow-900 py-2 px-4 rounded-md
-                    text-white shadow-lg hover:bg-yellow-700"
-                    type="button"
-                    data-testid={ `admin_manage__element-user-table-remove-${index}` }
-                    onClick={ () => removeUser(id) }
-                  >
-                    Excluir
-                  </button>
-                </td>
-              ) }
+              <td>
+                <button
+                  className="bg-yellow-900 py-2 px-4 rounded-md
+                    text-white shadow-lg hover:bg-yellow-700 disabled:bg-opacity-20"
+                  disabled={ isDisabled(role) }
+                  type="button"
+                  data-testid={ `admin_manage__element-user-table-remove-${index}` }
+                  onClick={ () => removeUser(id) }
+                >
+                  Excluir
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
