@@ -53,7 +53,7 @@ export default function Checkout() {
           deliveryAddress: formInfo.address,
           deliveryNumber: formInfo.addressNumber,
           totalPrice,
-          sellerId: sellers.find((curr) => curr.id === formInfo.seller.id).id,
+          sellerId: formInfo.seller,
         },
         products,
       });
@@ -66,10 +66,6 @@ export default function Checkout() {
 
   const handleChange = async (e) => {
     setFormInfo({ ...formInfo, [e.name]: e.value });
-  };
-
-  const handleChange2 = async (e) => {
-    setFormInfo({ ...formInfo, [e.id]: e.value });
   };
 
   // ComponentDidMount
@@ -119,7 +115,7 @@ export default function Checkout() {
               id="select-seller"
               data-testid="customer_checkout__select-seller"
               name="seller"
-              onChange={ (e) => handleChange2(e.target) }
+              onChange={ (e) => handleChange(e.target) }
             >
               {
                 sellers.map((vendedor) => (
