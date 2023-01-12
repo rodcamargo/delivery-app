@@ -8,7 +8,7 @@ export default function CheckoutProductsTable(props) {
       className="min-w-full text-center"
     >
       <thead className="border-b border-amber-200">
-        <tr className="border-b bg-amber-100 border-amber-200">
+        <tr className="border-b bg-amber-200 border-amber-200">
           <th className="text-sm font-medium text-gray-900 px-6 py-4">
             Item
           </th>

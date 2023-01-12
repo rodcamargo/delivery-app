@@ -1,29 +1,23 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Context from '../context/Context';
 import { requestPost, setToken } from '../services/requests';
 import logo from '../images/logo.png';
 
 export default function Login() {
-  // const { setUser } = useContext(Context);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [failedTryLogin, setFailedTryLogin] = useState(false);
+  const [failedLogin, setFailedLogin] = useState(false);
   const [btnIsDisabled, setBtnIsDisabled] = useState(true);
   const navigate = useNavigate();
 
   const validateInfo = () => {
-    const emailRules = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const passwordRules = 6;
+    const regexEmail = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+    const six = 6;
 
-    if (email.match(emailRules) && password.length >= passwordRules) {
+    if (email.match(regexEmail) && password.length >= six) {
       return setBtnIsDisabled(false);
     }
     return setBtnIsDisabled(true);
-  };
-
-  const handleRegister = () => {
-    navigate('/register');
   };
 
   useEffect(() => {
@@ -33,8 +27,17 @@ export default function Login() {
     }
   }, []);
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
+  useEffect(() => {
+    setFailedLogin(false);
+    validateInfo();
+  }, [email, password]);
+
+  const handleRegister = () => {
+    navigate('/register');
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
     try {
       const user = await requestPost('/login', { email, password });
       localStorage.setItem('user', JSON.stringify(user));
@@ -51,14 +54,9 @@ export default function Login() {
       setToken();
       navigate('/customer/products');
     } catch (error) {
-      setFailedTryLogin(true);
+      setFailedLogin(true);
     }
   };
-
-  useEffect(() => {
-    setFailedTryLogin(false);
-    validateInfo();
-  }, [email, password]);
 
   return (
     <section className="h-screen flex flex-col justify-center items-center bg-amber-50">
@@ -76,7 +74,7 @@ export default function Login() {
             type="email"
             name="email"
             value={ email }
-            placeholder="email@trybeer.com.br"
+            placeholder="email@delivery.com"
             onChange={ (e) => setEmail(e.target.value) }
             required
           />
@@ -103,13 +101,13 @@ export default function Login() {
           className="bg-yellow-900 disabled:opacity-20 py-2
           px-4 rounded-md text-white shadow-lg hover:bg-yellow-700"
           type="button"
-          onClick={ (event) => handleLogin(event) }
+          onClick={ (e) => handleLogin(e) }
           disabled={ btnIsDisabled }
         >
           LOGIN
         </button>
         {
-          (failedTryLogin)
+          (failedLogin)
             ? (
               <p data-testid="common_login__element-invalid-email">
                 {
