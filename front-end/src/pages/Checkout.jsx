@@ -62,7 +62,6 @@ export default function Checkout() {
       });
       localStorage.removeItem('cart');
       navigate(`/customer/orders/${result.saleId}`);
-      console.log(formInfo.seller);
     } catch (error) {
       console.log(error);
     }
