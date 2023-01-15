@@ -28,7 +28,10 @@ export default function Checkout() {
     try {
       const response = await requestGet('/customer/checkout/sellers');
       setSellers(response);
-      setFormInfo({ seller: response[0] });
+      setFormInfo((prevstate) => ({
+        ...prevstate,
+        seller: response[0].id,
+      }));
     } catch (e) {
       console.log(e);
     }
@@ -59,6 +62,7 @@ export default function Checkout() {
       });
       localStorage.removeItem('cart');
       navigate(`/customer/orders/${result.saleId}`);
+      console.log(formInfo.seller);
     } catch (error) {
       console.log(error);
     }
