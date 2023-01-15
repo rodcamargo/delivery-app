@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import DeliveryDetails from '../components/DeliveryDetails';
-import DetailsCards from '../components/DetailsCards';
+import OrderDeliveryDetails from '../components/OrderDeliveryDetails';
+import OrderDetailsTable from '../components/OrderDetailsTable';
 import Header from '../components/Header';
 import { requestGet, requestPatch, setToken } from '../services/requests';
 
@@ -32,8 +32,8 @@ export default function CustomerOrderDetails() {
       <Header />
       { details ? (
         <>
-          <DeliveryDetails sale={ details } markAsDelivered={ markAsDelivered } />
-          <DetailsCards products={ details.products } />
+          <OrderDeliveryDetails sale={ details } markAsDelivered={ markAsDelivered } />
+          <OrderDetailsTable products={ details.products } />
           <div
             className="text-yellow-900 font-medium text-xl pt-3 text-right m-5"
             data-testid="customer_order_details__element-order-total-price"

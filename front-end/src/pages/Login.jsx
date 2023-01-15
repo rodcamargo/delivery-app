@@ -12,9 +12,9 @@ export default function Login() {
 
   const validateInfo = () => {
     const regexEmail = /^[a-z0-9._]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-    const six = 6;
+    const minLength = 6;
 
-    if (email.match(regexEmail) && password.length >= six) {
+    if (email.match(regexEmail) && password.length >= minLength) {
       return setBtnIsDisabled(false);
     }
     return setBtnIsDisabled(true);
