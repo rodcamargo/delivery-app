@@ -24,7 +24,7 @@ export default function Checkout() {
     }
   };
 
-  const getSellers = async () => {
+  const getSellersInfo = async () => {
     try {
       const response = await requestGet('/customer/checkout/sellers');
       setSellers(response);
@@ -32,15 +32,14 @@ export default function Checkout() {
         ...prevstate,
         seller: response[0].id,
       }));
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      console.log(error);
     }
   };
 
   const calcTotalPrice = () => {
-    setTotalPrice(
-      products.reduce((acc, product) => acc + product.quantity * product.price, 0),
-    );
+    setTotalPrice(products
+      .reduce((acc, product) => acc + product.quantity * product.price, 0));
   };
 
   const removeItem = (id) => {
@@ -49,7 +48,7 @@ export default function Checkout() {
     localStorage.setItem('cart', JSON.stringify(newProducts));
   };
 
-  const closeOrder = async () => {
+  const checkoutOrder = async () => {
     try {
       const result = await requestPost('/customer/checkout/close', {
         sale: {
@@ -71,14 +70,11 @@ export default function Checkout() {
     setFormInfo({ ...formInfo, [e.name]: e.value });
   };
 
-  // ComponentDidMount
   useEffect(() => {
     getProductsInfo();
-    getSellers();
-    calcTotalPrice();
+    getSellersInfo();
   }, []);
 
-  // Atualiza o preço total quando um item é removido
   useEffect(() => {
     calcTotalPrice();
   }, [products]);
@@ -164,7 +160,7 @@ export default function Checkout() {
           px-4 rounded-md text-white shadow-lg hover:bg-yellow-700"
             type="button"
             data-testid="customer_checkout__button-submit-order"
-            onClick={ closeOrder }
+            onClick={ checkoutOrder }
           >
             FINALIZAR PEDIDO
           </button>

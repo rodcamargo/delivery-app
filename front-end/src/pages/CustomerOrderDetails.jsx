@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import DeliveryDetails from '../components/DeliveryDetails';
-// import Context from '../context/Context';
 import DetailsCards from '../components/DetailsCards';
 import Header from '../components/Header';
 import { requestGet, requestPatch, setToken } from '../services/requests';
 
-export default function OrderDetails() {
-  // const { stats, setStats } = useContext(Context);
+export default function CustomerOrderDetails() {
   const [details, setDetails] = useState();
   const params = useParams();
 
@@ -17,7 +15,6 @@ export default function OrderDetails() {
   };
 
   const markAsDelivered = async () => {
-    // setStats(!stats);
     const result = await requestPatch(
       `/sale/${+params.id}/delivered`,
       { status: 'Entregue' },

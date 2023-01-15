@@ -5,7 +5,7 @@ import Login from './pages/Login';
 import Products from './pages/Products';
 import Register from './pages/Register';
 import Manager from './pages/Manager';
-import OrderDetails from './pages/OrderDetails';
+import CustomerOrderDetails from './pages/CustomerOrderDetails';
 import NotFound from './pages/NotFound';
 import Seller from './pages/Seller';
 import SellerDetails from './pages/detailsSeller';
@@ -22,8 +22,8 @@ export default function Router() {
       <Route exact path="/customer/checkout" element={ <Checkout /> } />
       <Route exact path="/seller/orders" element={ <Seller /> } />
       <Route exact path="/seller/orders/:id" element={ <SellerDetails /> } />
-      <Route exact path="/customer/orders/:id" element={ <OrderDetails /> } />
       <Route exact path="/customer/orders" element={ <CustomerOrders /> } />
+      <Route exact path="/customer/orders/:id" element={ <CustomerOrderDetails /> } />
       <Route exact path="*" element={ <NotFound /> } />
     </Routes>
   );

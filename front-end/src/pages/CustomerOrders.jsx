@@ -5,17 +5,22 @@ import { requestGet, setToken } from '../services/requests';
 
 export default function CustomerOrders() {
   const [orders, setOrders] = useState([]);
+  const [user, setUser] = useState([]);
 
   const getOrders = async (id) => {
     const result = await requestGet(`/customer/${id}/orders`);
     setOrders(result);
   };
 
-  const getUser = () => JSON.parse(localStorage.getItem('user'));
+  const getUser = () => {
+    const result = JSON.parse(localStorage.getItem('user'));
+    setUser(result);
+  };
 
   useEffect(() => {
     setToken();
-    getOrders(getUser().id);
+    getUser();
+    getOrders(user.id);
   }, []);
 
   return (
@@ -23,6 +28,5 @@ export default function CustomerOrders() {
       <Header />
       <OrderCards orders={ orders } />
     </main>
-
   );
 }
