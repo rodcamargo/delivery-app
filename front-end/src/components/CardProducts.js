@@ -66,7 +66,6 @@ function CardProducts() {
 
   const handleAddRm = ({ target: { id, value } }) => {
     const findProduct = dataProducts.find((el) => el.id === Number(id));
-
     const findCartProduct = cart.find((el) => (el.id) === Number(id));
 
     switch (value) {
@@ -180,8 +179,8 @@ function CardProducts() {
       >
         <p
           data-testid="customer_products__checkout-bottom-value"
-          className="fixed right-4 bottom-4 text-yellow-900 bg-gray-200
-              bg-opacity-30 rounded-lg font-medium text-lg pl-2 pt-1 px-2
+          className="fixed right-4 bottom-4 text-white bg-yellow-900
+              bg-opacity-70 rounded-lg font-medium text-lg pl-2 pt-1 px-2
               py-1.5 text-center"
         >
           Ver Carrinho: R$
